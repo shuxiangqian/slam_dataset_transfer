@@ -1,0 +1,54 @@
+%YAML 1.2
+---
+# lvo::extra::YamlConfig
+
+# transform before output
+output:
+  q_bo: [-0.7071068, 0.7071068, 0.0, 0.0] # x y z w
+  p_bo: [0.002, 0.017, 0] # x y z [m]
+
+# camera parameters
+camera:
+  noise: [ 0.5, 0.0, 0.0, 0.5]   # [pixel^2]
+  intrinsic: [490, 490, 318.5, 237.5] # fx fy cx cy
+  extrinsic:
+    q_bc: [-0.7071068, 0.7071068, 0, 0] # x y z w
+    p_bc: [0.002, 0.017, 0] # x y z [m]
+
+# imu parameters
+imu:
+  noise:
+    gravity: [
+      1.0e-4, 0.0, 0.0,
+      0.0, 1.0e-4, 0.0,
+      0.0, 0.0, 1.0e-4 ]
+  extrinsic:
+      q_bi: [0.0, 0.0, 0.0, 1.0] # x y z w
+      p_bi: [0.0, 0.0, 0.0] # x y z [m]
+
+gravity_initializer:
+  plane_distance: 0.5 # [m]
+  baseline: 0.05 # [m]
+
+initializer:
+  map_frames: 50
+  # keyframe_gap: 5
+  # keyframe_num: 8
+  min_matches: 40
+  min_parallax: 50.0
+  min_triangulization: 30
+
+feature:
+  min_keypoint_distance: 25.0 # [px]
+  max_keypoint_detection: 100
+  min_keypoint_detection: 60
+
+tracker:
+  min_valid_tracks: 30
+  min_landmarks: 40
+  window_size: 8
+  smallwindow_size: 3
+
+solver:
+  iteration_limit: 8
+  time_limit: 0.1 # [s]
